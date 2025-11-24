@@ -51,6 +51,8 @@ struct MealEntryModal: View {
                 .scrollDismissesKeyboard(.interactively)
                 .onTapGesture { notesFocused = false }
                 .padding(20)
+
+                debugSection
             }
             .navigationTitle("Meal Entry")
             .navigationBarTitleDisplayMode(.inline)
@@ -126,6 +128,59 @@ struct MealEntryModal: View {
     }
 
     // MARK: - Subviews
+
+    @ViewBuilder    private var debugSection: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text("DEBUG INFO")
+                .font(.headline)
+                .foregroundColor(.secondary)
+            
+            Group {
+                Text("Backend: \(networkManager.baseURL)")
+                    .font(.caption)
+                Text("User: \(networkManager.currentUser?.id ?? "None")")
+                HStack {
+                    Text("Child:")
+                    Text(networkManager.selectedChild?.name ?? "NONE")
+                        .bold()
+                        .foregroundColor(networkManager.selectedChild == nil ? .red : .green)
+                }
+            }
+            
+            Button(action: {
+                print("🔵 Manual Fetch Triggered")
+                networkManager.fetchChildren()
+            }) {
+                HStack {
+                    Image(systemName: "arrow.clockwise")
+                    Text("Force Fetch Children")
+                }
+                .frame(maxWidth: .infinity)
+                .padding(8)
+                .background(Color.blue.opacity(0.1))
+                .cornerRadius(8)
+            }
+            
+            Button(action: {
+                print("🔵 Force Login Triggered")
+                Task {
+                    try? await networkManager.login(userId: "test_user")
+                    networkManager.fetchChildren()
+                }
+            }) {
+                Text("Force Login (test_user)")
+                    .font(.caption)
+                    .foregroundColor(.blue)
+            }
+        }
+        .padding()
+        .background(Color.gray.opacity(0.1))
+        .cornerRadius(12)
+        .onAppear {
+            print("🔵 MealEntryModal appeared - triggering fetch")
+            networkManager.fetchChildren()
+        }
+    }
 
     @ViewBuilder private var phaseToggle: some View {
         HStack(spacing: 0) {
@@ -355,6 +410,11 @@ struct MealEntryModal: View {
     }
 
     private func saveEntry() {
+        print("🔵 Save button tapped")
+        print("🔵 Selected child: \(networkManager.selectedChild?.name ?? "NONE")")
+        print("🔵 Notes: \(notes)")
+        print("🔵 Phase: \(phase.rawValue)")
+        
         Task {
             do {
                 // Upload photos first (placeholder logic)
@@ -362,17 +422,25 @@ struct MealEntryModal: View {
                 let photoUrl = "placeholder_url" 
                 
                 // Save meal data via API
-                guard let child = networkManager.selectedChild else { return }
+                guard let child = networkManager.selectedChild else {
+                    print("❌ No child selected - cannot save")
+                    await MainActor.run {
+                        // TODO: Show alert to user
+                    }
+                    return
+                }
+                
+                print("🔵 Uploading meal for child: \(child.name)")
                 try await NetworkManager.shared.uploadMeal(
                     childId: child.id,
                     type: phase == .before ? "PRE_MEAL" : "POST_MEAL",
                     notes: notes.trimmingCharacters(in: .whitespacesAndNewlines)
                 )
                 
-                print("Saved entry via API")
+                print("✅ Saved entry via API")
                 dismiss()
             } catch {
-                print("Save failed:", error.localizedDescription)
+                print("❌ Save failed: \(error.localizedDescription)")
                 // Show error alert
             }
         }

@@ -5,7 +5,7 @@ class NetworkManager: ObservableObject {
     static let shared = NetworkManager()
     
     // Change this to your Epyc server IP when running on device
-    private let baseURL = "http://100.79.130.75:8090"
+    let baseURL = "http://100.79.130.75:8090"
     
     @Published var currentUser: User?
     
@@ -230,21 +230,41 @@ class NetworkManager: ObservableObject {
     @Published var selectedChild: Child?
     
     func fetchChildren() {
-        guard let url = URL(string: "\(baseURL)/children/") else { return }
+        print("🔵 Fetching children from: \(baseURL)/children/")
+        guard let url = URL(string: "\(baseURL)/children/") else {
+            print("❌ Invalid URL")
+            return
+        }
         
-        URLSession.shared.dataTask(with: url) { data, _, error in
-            guard let data = data, error == nil else { return }
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            if let error = error {
+                print("❌ Network error: \(error.localizedDescription)")
+                return
+            }
+            
+            if let httpResponse = response as? HTTPURLResponse {
+                print("🔵 HTTP Status: \(httpResponse.statusCode)")
+            }
+            
+            guard let data = data else {
+                print("❌ No data received")
+                return
+            }
+            
+            print("🔵 Received data: \(String(data: data, encoding: .utf8) ?? "unable to decode")")
             
             do {
                 let decodedChildren = try JSONDecoder().decode([Child].self, from: data)
+                print("✅ Decoded \(decodedChildren.count) children")
                 DispatchQueue.main.async {
                     self.children = decodedChildren
                     if self.selectedChild == nil, let first = decodedChildren.first {
                         self.selectedChild = first
+                        print("✅ Auto-selected child: \(first.name)")
                     }
                 }
             } catch {
-                print("Error decoding children: \(error)")
+                print("❌ Error decoding children: \(error)")
             }
         }.resume()
     }

@@ -8,6 +8,16 @@ struct ContentView: View {
     var body: some View {
         if network.currentUser == nil {
             LoginView()
+                .onAppear {
+                    print("🔵 LoginView appeared - starting auto-login")
+                    // Auto-login for testing
+                    Task {
+                        print("🔵 Logging in as test_user")
+                        try? await network.login(userId: "test_user")
+                        print("🔵 Login complete, fetching children")
+                        network.fetchChildren()
+                    }
+                }
         } else {
             TabView(selection: $selectedTab) {
                 QuickLogDashboard(onOpenMealEntry: {
@@ -33,7 +43,10 @@ struct ContentView: View {
             .environmentObject(network)
             .sheet(isPresented: $showMealEntry) {
                 MealEntryModal()
-                    // Inject environment object if needed, or refactor MealEntryModal to use NetworkManager
+                    .environmentObject(network)
+            }
+            .onAppear {
+                network.fetchChildren()
             }
         }
     }

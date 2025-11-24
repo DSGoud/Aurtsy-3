@@ -1,5 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict/>
+<dict>
+	<key>NSCameraUsageDescription</key>
+	<string>We need camera access to take photos of meals for tracking nutrition and progress.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>We need microphone access for voice dictation of meal notes.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>We need photo library access to select meal photos.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>We need permission to save meal photos.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>We use speech recognition to transcribe your voice notes about meals and activities.</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<false/>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>100.79.130.75</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+			</dict>
+		</dict>
+	</dict>
+</dict>
 </plist>

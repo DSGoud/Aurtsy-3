@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Depends, HTTPException, status
+from fastapi import FastAPI, Depends, HTTPException, status, Query
 from sqlalchemy.orm import Session
 from typing import List
 from datetime import datetime
@@ -70,7 +70,7 @@ def delete_child(child_id: str, db: Session = Depends(get_db)):
 # --- Meal Endpoints ---
 
 @app.post("/meals/", response_model=schemas.Meal)
-def create_meal(meal: schemas.MealCreate, user_id: str, db: Session = Depends(get_db)):
+def create_meal(meal: schemas.MealCreate, user_id: str = Query(...), db: Session = Depends(get_db)):
     # In real app, user_id comes from auth token
     return crud.create_meal(db=db, meal=meal, user_id=user_id)
 
