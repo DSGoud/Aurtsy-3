@@ -6,24 +6,6 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		CC147A492ED4117700ACF597 /* ActivityLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC147A3B2ED4117700ACF597 /* ActivityLogView.swift */; };
-		CC147A4A2ED4117700ACF597 /* ActivityFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC147A3A2ED4117700ACF597 /* ActivityFeedView.swift */; };
-		CC147A4B2ED4117700ACF597 /* MealEntryModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC147A422ED4117700ACF597 /* MealEntryModal.swift */; };
-		CC147A4C2ED4117700ACF597 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC147A432ED4117700ACF597 /* Models.swift */; };
-		CC147A4D2ED4117700ACF597 /* AurtsyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC147A3C2ED4117700ACF597 /* AurtsyApp.swift */; };
-		CC147A4E2ED4117700ACF597 /* PrimaryCapsule.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC147A462ED4117700ACF597 /* PrimaryCapsule.swift */; };
-		CC147A4F2ED4117700ACF597 /* QuickLogDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC147A472ED4117700ACF597 /* QuickLogDashboard.swift */; };
-		CC147A502ED4117700ACF597 /* ModernHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC147A442ED4117700ACF597 /* ModernHeader.swift */; };
-		CC147A512ED4117700ACF597 /* LocationCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC147A412ED4117700ACF597 /* LocationCheckView.swift */; };
-		CC147A522ED4117700ACF597 /* HydrationLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC147A402ED4117700ACF597 /* HydrationLogView.swift */; };
-		CC147A532ED4117700ACF597 /* SleepLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC147A482ED4117700ACF597 /* SleepLogView.swift */; };
-		CC147A542ED4117700ACF597 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC147A3F2ED4117700ACF597 /* ContentView.swift */; };
-		CC147A552ED4117700ACF597 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC147A452ED4117700ACF597 /* NetworkManager.swift */; };
-		CC147A562ED4117700ACF597 /* ChildManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC147A3E2ED4117700ACF597 /* ChildManagementView.swift */; };
-		CC147A572ED4117700ACF597 /* BehaviorLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC147A3D2ED4117700ACF597 /* BehaviorLogView.swift */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXContainerItemProxy section */
 		CC147A1C2ED40FE400ACF597 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -45,22 +27,6 @@
 		CC147A0E2ED40FE300ACF597 /* AurtsyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AurtsyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC147A1B2ED40FE400ACF597 /* AurtsyAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AurtsyAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC147A252ED40FE400ACF597 /* AurtsyAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AurtsyAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CC147A3A2ED4117700ACF597 /* ActivityFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedView.swift; sourceTree = "<group>"; };
-		CC147A3B2ED4117700ACF597 /* ActivityLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLogView.swift; sourceTree = "<group>"; };
-		CC147A3C2ED4117700ACF597 /* AurtsyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AurtsyApp.swift; sourceTree = "<group>"; };
-		CC147A3D2ED4117700ACF597 /* BehaviorLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BehaviorLogView.swift; sourceTree = "<group>"; };
-		CC147A3E2ED4117700ACF597 /* ChildManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildManagementView.swift; sourceTree = "<group>"; };
-		CC147A3F2ED4117700ACF597 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		CC147A402ED4117700ACF597 /* HydrationLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HydrationLogView.swift; sourceTree = "<group>"; };
-		CC147A412ED4117700ACF597 /* LocationCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCheckView.swift; sourceTree = "<group>"; };
-		CC147A422ED4117700ACF597 /* MealEntryModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealEntryModal.swift; sourceTree = "<group>"; };
-		CC147A432ED4117700ACF597 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
-		CC147A442ED4117700ACF597 /* ModernHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModernHeader.swift; sourceTree = "<group>"; };
-		CC147A452ED4117700ACF597 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		CC147A462ED4117700ACF597 /* PrimaryCapsule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryCapsule.swift; sourceTree = "<group>"; };
-		CC147A472ED4117700ACF597 /* QuickLogDashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickLogDashboard.swift; sourceTree = "<group>"; };
-		CC147A482ED4117700ACF597 /* SleepLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepLogView.swift; sourceTree = "<group>"; };
-		CC147A582ED4118900ACF597 /* AurtsyApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AurtsyApp-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -122,26 +88,10 @@
 		CC147A052ED40FE300ACF597 = {
 			isa = PBXGroup;
 			children = (
-				CC147A3A2ED4117700ACF597 /* ActivityFeedView.swift */,
-				CC147A3B2ED4117700ACF597 /* ActivityLogView.swift */,
-				CC147A3C2ED4117700ACF597 /* AurtsyApp.swift */,
-				CC147A3D2ED4117700ACF597 /* BehaviorLogView.swift */,
-				CC147A3E2ED4117700ACF597 /* ChildManagementView.swift */,
-				CC147A3F2ED4117700ACF597 /* ContentView.swift */,
-				CC147A402ED4117700ACF597 /* HydrationLogView.swift */,
-				CC147A412ED4117700ACF597 /* LocationCheckView.swift */,
-				CC147A422ED4117700ACF597 /* MealEntryModal.swift */,
-				CC147A432ED4117700ACF597 /* Models.swift */,
-				CC147A442ED4117700ACF597 /* ModernHeader.swift */,
-				CC147A452ED4117700ACF597 /* NetworkManager.swift */,
-				CC147A462ED4117700ACF597 /* PrimaryCapsule.swift */,
-				CC147A472ED4117700ACF597 /* QuickLogDashboard.swift */,
-				CC147A482ED4117700ACF597 /* SleepLogView.swift */,
 				CC147A102ED40FE300ACF597 /* AurtsyApp */,
 				CC147A1E2ED40FE400ACF597 /* AurtsyAppTests */,
 				CC147A282ED40FE400ACF597 /* AurtsyAppUITests */,
 				CC147A0F2ED40FE300ACF597 /* Products */,
-				CC147A582ED4118900ACF597 /* AurtsyApp-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -300,21 +250,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CC147A492ED4117700ACF597 /* ActivityLogView.swift in Sources */,
-				CC147A4A2ED4117700ACF597 /* ActivityFeedView.swift in Sources */,
-				CC147A4B2ED4117700ACF597 /* MealEntryModal.swift in Sources */,
-				CC147A4C2ED4117700ACF597 /* Models.swift in Sources */,
-				CC147A4D2ED4117700ACF597 /* AurtsyApp.swift in Sources */,
-				CC147A4E2ED4117700ACF597 /* PrimaryCapsule.swift in Sources */,
-				CC147A4F2ED4117700ACF597 /* QuickLogDashboard.swift in Sources */,
-				CC147A502ED4117700ACF597 /* ModernHeader.swift in Sources */,
-				CC147A512ED4117700ACF597 /* LocationCheckView.swift in Sources */,
-				CC147A522ED4117700ACF597 /* HydrationLogView.swift in Sources */,
-				CC147A532ED4117700ACF597 /* SleepLogView.swift in Sources */,
-				CC147A542ED4117700ACF597 /* ContentView.swift in Sources */,
-				CC147A552ED4117700ACF597 /* NetworkManager.swift in Sources */,
-				CC147A562ED4117700ACF597 /* ChildManagementView.swift in Sources */,
-				CC147A572ED4117700ACF597 /* BehaviorLogView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
