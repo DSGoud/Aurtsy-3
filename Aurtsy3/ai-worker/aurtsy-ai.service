@@ -1,0 +1,13 @@
+[Unit]
+Description=Aurtsy AI Worker
+After=network.target
+
+[Service]
+User=anilgoud
+WorkingDirectory=/home/anilgoud/aurtsy-ai-worker
+ExecStart=/usr/bin/python3 -m uvicorn main:app --host 0.0.0.0 --port 8001
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
