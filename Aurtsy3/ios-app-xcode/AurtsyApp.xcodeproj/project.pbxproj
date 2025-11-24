@@ -1,0 +1,391 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 63;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		02DBBC8423780A74C62028A9 /* LocationCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76C30F83067D5FAB852307C /* LocationCheckView.swift */; };
+		061E77F2F99D50807C54A79E /* AurtsyAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E6D0217A5FB62BE6AFE6E2 /* AurtsyAppUITests.swift */; };
+		0D17D645BB5329500F6676D2 /* SleepLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBFF638C2B0ECFF630E869E /* SleepLogView.swift */; };
+		11326E3BD5D6A88D9EC969FE /* AurtsyAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61165377277004221B2ACE96 /* AurtsyAppUITestsLaunchTests.swift */; };
+		16729DB03BCC03853A22625B /* ActivityFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B5826DD996752792147AAA /* ActivityFeedView.swift */; };
+		1B784178FA3B43E6877F24A2 /* ActivityLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31A7884C611A0D3CF7E8202 /* ActivityLogView.swift */; };
+		2AAB4746641DD98F03A72BEA /* HydrationLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A0171CD2AAF40B2D16876A /* HydrationLogView.swift */; };
+		2B9F2EE2A693B90960875453 /* ModernHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EDFF7D6376F8C8FA30F816 /* ModernHeader.swift */; };
+		2E9E6E5F00B62D8D72A168FC /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789A02A31B6C206A0702255C /* NetworkManager.swift */; };
+		30341D78CB8D74DFDA5A9580 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23E96DE6FF4F75A022BFA44 /* ContentView.swift */; };
+		7BB8BCF810A007F97FA79CDA /* AurtsyApp.xcodeproj in Resources */ = {isa = PBXBuildFile; fileRef = 0DDB4206AB076166E1B3662E /* AurtsyApp.xcodeproj */; };
+		8240D76291E165B36E69E1E8 /* PrimaryCapsule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ACEE56E3B746F5D30E0AE0 /* PrimaryCapsule.swift */; };
+		8473852AC53238BADBA7946D /* BehaviorLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647D0FE98BBC5EF55F8AC68C /* BehaviorLogView.swift */; };
+		8B6CAE0534A540BE5D79C5B5 /* AurtsyAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C175B83945A5C529BA2C7208 /* AurtsyAppTests.swift */; };
+		8CD1D9136CA5CBB669812173 /* ChildManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1C3A79466D78D5E1EAE549 /* ChildManagementView.swift */; };
+		9E9B3A66851E6A9EFA73EA42 /* QuickLogDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC42803AC582C6FDE5E6E730 /* QuickLogDashboard.swift */; };
+		BECCF219A7A5F597E9DAFA54 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EC0C8D06FDC311A0E0AEFF /* Models.swift */; };
+		CF4D6343D8464D2A97B8CA6C /* AurtsyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA5E1BD008B9AE070A48ADC /* AurtsyApp.swift */; };
+		DD7E24222AA7C76DBCE7C410 /* MealEntryModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833C8122600E53EF086B1333 /* MealEntryModal.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0A1C3A79466D78D5E1EAE549 /* ChildManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildManagementView.swift; sourceTree = "<group>"; };
+		0DDB4206AB076166E1B3662E /* AurtsyApp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = AurtsyApp.xcodeproj; sourceTree = "<group>"; };
+		10A0171CD2AAF40B2D16876A /* HydrationLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HydrationLogView.swift; sourceTree = "<group>"; };
+		2FA5E1BD008B9AE070A48ADC /* AurtsyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AurtsyApp.swift; sourceTree = "<group>"; };
+		46E6D0217A5FB62BE6AFE6E2 /* AurtsyAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AurtsyAppUITests.swift; sourceTree = "<group>"; };
+		49ACEE56E3B746F5D30E0AE0 /* PrimaryCapsule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryCapsule.swift; sourceTree = "<group>"; };
+		54D337A844FD126C31F794BB /* AurtsyApp.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = AurtsyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		61165377277004221B2ACE96 /* AurtsyAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AurtsyAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		647D0FE98BBC5EF55F8AC68C /* BehaviorLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BehaviorLogView.swift; sourceTree = "<group>"; };
+		6EBFF638C2B0ECFF630E869E /* SleepLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepLogView.swift; sourceTree = "<group>"; };
+		75EDFF7D6376F8C8FA30F816 /* ModernHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModernHeader.swift; sourceTree = "<group>"; };
+		789A02A31B6C206A0702255C /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		833C8122600E53EF086B1333 /* MealEntryModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealEntryModal.swift; sourceTree = "<group>"; };
+		83E3E80C988304852507FCD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		A31A7884C611A0D3CF7E8202 /* ActivityLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLogView.swift; sourceTree = "<group>"; };
+		B76C30F83067D5FAB852307C /* LocationCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCheckView.swift; sourceTree = "<group>"; };
+		C175B83945A5C529BA2C7208 /* AurtsyAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AurtsyAppTests.swift; sourceTree = "<group>"; };
+		C23E96DE6FF4F75A022BFA44 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		C3EC0C8D06FDC311A0E0AEFF /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		E2B5826DD996752792147AAA /* ActivityFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedView.swift; sourceTree = "<group>"; };
+		EC42803AC582C6FDE5E6E730 /* QuickLogDashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickLogDashboard.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		340932038EBCCE4E89DC344C = {
+			isa = PBXGroup;
+			children = (
+				B125E3F7720305D98C44352D /* AurtsyApp */,
+				DD330C34FF3A6851D1907602 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A94E941C8F136F43A49AD395 /* AurtsyAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				C175B83945A5C529BA2C7208 /* AurtsyAppTests.swift */,
+			);
+			path = AurtsyAppTests;
+			sourceTree = "<group>";
+		};
+		ADCFF610F79FF34597C5FD46 /* AurtsyAppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				46E6D0217A5FB62BE6AFE6E2 /* AurtsyAppUITests.swift */,
+				61165377277004221B2ACE96 /* AurtsyAppUITestsLaunchTests.swift */,
+			);
+			path = AurtsyAppUITests;
+			sourceTree = "<group>";
+		};
+		B125E3F7720305D98C44352D /* AurtsyApp */ = {
+			isa = PBXGroup;
+			children = (
+				E2B5826DD996752792147AAA /* ActivityFeedView.swift */,
+				A31A7884C611A0D3CF7E8202 /* ActivityLogView.swift */,
+				2FA5E1BD008B9AE070A48ADC /* AurtsyApp.swift */,
+				0DDB4206AB076166E1B3662E /* AurtsyApp.xcodeproj */,
+				647D0FE98BBC5EF55F8AC68C /* BehaviorLogView.swift */,
+				0A1C3A79466D78D5E1EAE549 /* ChildManagementView.swift */,
+				C23E96DE6FF4F75A022BFA44 /* ContentView.swift */,
+				10A0171CD2AAF40B2D16876A /* HydrationLogView.swift */,
+				83E3E80C988304852507FCD1 /* Info.plist */,
+				B76C30F83067D5FAB852307C /* LocationCheckView.swift */,
+				833C8122600E53EF086B1333 /* MealEntryModal.swift */,
+				C3EC0C8D06FDC311A0E0AEFF /* Models.swift */,
+				75EDFF7D6376F8C8FA30F816 /* ModernHeader.swift */,
+				789A02A31B6C206A0702255C /* NetworkManager.swift */,
+				49ACEE56E3B746F5D30E0AE0 /* PrimaryCapsule.swift */,
+				EC42803AC582C6FDE5E6E730 /* QuickLogDashboard.swift */,
+				6EBFF638C2B0ECFF630E869E /* SleepLogView.swift */,
+				A94E941C8F136F43A49AD395 /* AurtsyAppTests */,
+				ADCFF610F79FF34597C5FD46 /* AurtsyAppUITests */,
+			);
+			path = AurtsyApp;
+			sourceTree = "<group>";
+		};
+		CC1479612ED40B9800ACF597 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DD330C34FF3A6851D1907602 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				54D337A844FD126C31F794BB /* AurtsyApp.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		502D5D070FE828A04CABE7DD /* AurtsyApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 64AAB62774889788151FA9CA /* Build configuration list for PBXNativeTarget "AurtsyApp" */;
+			buildPhases = (
+				0271FC6CA39D3E28BEB66A57 /* Sources */,
+				9ACF2F1D92B7995EA3C84E85 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AurtsyApp;
+			packageProductDependencies = (
+			);
+			productName = AurtsyApp;
+			productReference = 54D337A844FD126C31F794BB /* AurtsyApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C78D87D128FA9C32C63C0183 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+			};
+			buildConfigurationList = 82E6465BD6B21B5EE01A8F5B /* Build configuration list for PBXProject "AurtsyApp" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 340932038EBCCE4E89DC344C;
+			minimizedProjectReferenceProxies = 1;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = CC1479612ED40B9800ACF597 /* Products */;
+					ProjectRef = 0DDB4206AB076166E1B3662E /* AurtsyApp.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				502D5D070FE828A04CABE7DD /* AurtsyApp */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9ACF2F1D92B7995EA3C84E85 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7BB8BCF810A007F97FA79CDA /* AurtsyApp.xcodeproj in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0271FC6CA39D3E28BEB66A57 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				16729DB03BCC03853A22625B /* ActivityFeedView.swift in Sources */,
+				1B784178FA3B43E6877F24A2 /* ActivityLogView.swift in Sources */,
+				CF4D6343D8464D2A97B8CA6C /* AurtsyApp.swift in Sources */,
+				8B6CAE0534A540BE5D79C5B5 /* AurtsyAppTests.swift in Sources */,
+				061E77F2F99D50807C54A79E /* AurtsyAppUITests.swift in Sources */,
+				11326E3BD5D6A88D9EC969FE /* AurtsyAppUITestsLaunchTests.swift in Sources */,
+				8473852AC53238BADBA7946D /* BehaviorLogView.swift in Sources */,
+				8CD1D9136CA5CBB669812173 /* ChildManagementView.swift in Sources */,
+				30341D78CB8D74DFDA5A9580 /* ContentView.swift in Sources */,
+				2AAB4746641DD98F03A72BEA /* HydrationLogView.swift in Sources */,
+				02DBBC8423780A74C62028A9 /* LocationCheckView.swift in Sources */,
+				DD7E24222AA7C76DBCE7C410 /* MealEntryModal.swift in Sources */,
+				BECCF219A7A5F597E9DAFA54 /* Models.swift in Sources */,
+				2B9F2EE2A693B90960875453 /* ModernHeader.swift in Sources */,
+				2E9E6E5F00B62D8D72A168FC /* NetworkManager.swift in Sources */,
+				8240D76291E165B36E69E1E8 /* PrimaryCapsule.swift in Sources */,
+				9E9B3A66851E6A9EFA73EA42 /* QuickLogDashboard.swift in Sources */,
+				0D17D645BB5329500F6676D2 /* SleepLogView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		30F24BCEE53248A9B197F2FC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		40DDE906174008AB18F9BDFD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = AurtsyApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.aurtsy.AurtsyApp;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		585A1D5358BE8F917EDB893D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		C555FB6CB7477771D5A37417 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = AurtsyApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.aurtsy.AurtsyApp;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		64AAB62774889788151FA9CA /* Build configuration list for PBXNativeTarget "AurtsyApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				40DDE906174008AB18F9BDFD /* Debug */,
+				C555FB6CB7477771D5A37417 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		82E6465BD6B21B5EE01A8F5B /* Build configuration list for PBXProject "AurtsyApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				30F24BCEE53248A9B197F2FC /* Debug */,
+				585A1D5358BE8F917EDB893D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C78D87D128FA9C32C63C0183 /* Project object */;
+}

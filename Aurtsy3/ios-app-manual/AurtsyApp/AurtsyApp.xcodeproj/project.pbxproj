@@ -1,0 +1,657 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CC147A492ED4117700ACF597 /* ActivityLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC147A3B2ED4117700ACF597 /* ActivityLogView.swift */; };
+		CC147A4A2ED4117700ACF597 /* ActivityFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC147A3A2ED4117700ACF597 /* ActivityFeedView.swift */; };
+		CC147A4B2ED4117700ACF597 /* MealEntryModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC147A422ED4117700ACF597 /* MealEntryModal.swift */; };
+		CC147A4C2ED4117700ACF597 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC147A432ED4117700ACF597 /* Models.swift */; };
+		CC147A4D2ED4117700ACF597 /* AurtsyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC147A3C2ED4117700ACF597 /* AurtsyApp.swift */; };
+		CC147A4E2ED4117700ACF597 /* PrimaryCapsule.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC147A462ED4117700ACF597 /* PrimaryCapsule.swift */; };
+		CC147A4F2ED4117700ACF597 /* QuickLogDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC147A472ED4117700ACF597 /* QuickLogDashboard.swift */; };
+		CC147A502ED4117700ACF597 /* ModernHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC147A442ED4117700ACF597 /* ModernHeader.swift */; };
+		CC147A512ED4117700ACF597 /* LocationCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC147A412ED4117700ACF597 /* LocationCheckView.swift */; };
+		CC147A522ED4117700ACF597 /* HydrationLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC147A402ED4117700ACF597 /* HydrationLogView.swift */; };
+		CC147A532ED4117700ACF597 /* SleepLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC147A482ED4117700ACF597 /* SleepLogView.swift */; };
+		CC147A542ED4117700ACF597 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC147A3F2ED4117700ACF597 /* ContentView.swift */; };
+		CC147A552ED4117700ACF597 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC147A452ED4117700ACF597 /* NetworkManager.swift */; };
+		CC147A562ED4117700ACF597 /* ChildManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC147A3E2ED4117700ACF597 /* ChildManagementView.swift */; };
+		CC147A572ED4117700ACF597 /* BehaviorLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC147A3D2ED4117700ACF597 /* BehaviorLogView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CC147A1C2ED40FE400ACF597 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CC147A062ED40FE300ACF597 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CC147A0D2ED40FE300ACF597;
+			remoteInfo = AurtsyApp;
+		};
+		CC147A262ED40FE400ACF597 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CC147A062ED40FE300ACF597 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CC147A0D2ED40FE300ACF597;
+			remoteInfo = AurtsyApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		CC147A0E2ED40FE300ACF597 /* AurtsyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AurtsyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC147A1B2ED40FE400ACF597 /* AurtsyAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AurtsyAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC147A252ED40FE400ACF597 /* AurtsyAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AurtsyAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC147A3A2ED4117700ACF597 /* ActivityFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedView.swift; sourceTree = "<group>"; };
+		CC147A3B2ED4117700ACF597 /* ActivityLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLogView.swift; sourceTree = "<group>"; };
+		CC147A3C2ED4117700ACF597 /* AurtsyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AurtsyApp.swift; sourceTree = "<group>"; };
+		CC147A3D2ED4117700ACF597 /* BehaviorLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BehaviorLogView.swift; sourceTree = "<group>"; };
+		CC147A3E2ED4117700ACF597 /* ChildManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildManagementView.swift; sourceTree = "<group>"; };
+		CC147A3F2ED4117700ACF597 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		CC147A402ED4117700ACF597 /* HydrationLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HydrationLogView.swift; sourceTree = "<group>"; };
+		CC147A412ED4117700ACF597 /* LocationCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCheckView.swift; sourceTree = "<group>"; };
+		CC147A422ED4117700ACF597 /* MealEntryModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealEntryModal.swift; sourceTree = "<group>"; };
+		CC147A432ED4117700ACF597 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		CC147A442ED4117700ACF597 /* ModernHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModernHeader.swift; sourceTree = "<group>"; };
+		CC147A452ED4117700ACF597 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		CC147A462ED4117700ACF597 /* PrimaryCapsule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryCapsule.swift; sourceTree = "<group>"; };
+		CC147A472ED4117700ACF597 /* QuickLogDashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickLogDashboard.swift; sourceTree = "<group>"; };
+		CC147A482ED4117700ACF597 /* SleepLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepLogView.swift; sourceTree = "<group>"; };
+		CC147A582ED4118900ACF597 /* AurtsyApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AurtsyApp-Bridging-Header.h"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		CC147A392ED4107400ACF597 /* Exceptions for "AurtsyApp" folder in "AurtsyApp" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = CC147A0D2ED40FE300ACF597 /* AurtsyApp */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		CC147A102ED40FE300ACF597 /* AurtsyApp */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				CC147A392ED4107400ACF597 /* Exceptions for "AurtsyApp" folder in "AurtsyApp" target */,
+			);
+			path = AurtsyApp;
+			sourceTree = "<group>";
+		};
+		CC147A1E2ED40FE400ACF597 /* AurtsyAppTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = AurtsyAppTests;
+			sourceTree = "<group>";
+		};
+		CC147A282ED40FE400ACF597 /* AurtsyAppUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = AurtsyAppUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CC147A0B2ED40FE300ACF597 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CC147A182ED40FE400ACF597 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CC147A222ED40FE400ACF597 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CC147A052ED40FE300ACF597 = {
+			isa = PBXGroup;
+			children = (
+				CC147A3A2ED4117700ACF597 /* ActivityFeedView.swift */,
+				CC147A3B2ED4117700ACF597 /* ActivityLogView.swift */,
+				CC147A3C2ED4117700ACF597 /* AurtsyApp.swift */,
+				CC147A3D2ED4117700ACF597 /* BehaviorLogView.swift */,
+				CC147A3E2ED4117700ACF597 /* ChildManagementView.swift */,
+				CC147A3F2ED4117700ACF597 /* ContentView.swift */,
+				CC147A402ED4117700ACF597 /* HydrationLogView.swift */,
+				CC147A412ED4117700ACF597 /* LocationCheckView.swift */,
+				CC147A422ED4117700ACF597 /* MealEntryModal.swift */,
+				CC147A432ED4117700ACF597 /* Models.swift */,
+				CC147A442ED4117700ACF597 /* ModernHeader.swift */,
+				CC147A452ED4117700ACF597 /* NetworkManager.swift */,
+				CC147A462ED4117700ACF597 /* PrimaryCapsule.swift */,
+				CC147A472ED4117700ACF597 /* QuickLogDashboard.swift */,
+				CC147A482ED4117700ACF597 /* SleepLogView.swift */,
+				CC147A102ED40FE300ACF597 /* AurtsyApp */,
+				CC147A1E2ED40FE400ACF597 /* AurtsyAppTests */,
+				CC147A282ED40FE400ACF597 /* AurtsyAppUITests */,
+				CC147A0F2ED40FE300ACF597 /* Products */,
+				CC147A582ED4118900ACF597 /* AurtsyApp-Bridging-Header.h */,
+			);
+			sourceTree = "<group>";
+		};
+		CC147A0F2ED40FE300ACF597 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CC147A0E2ED40FE300ACF597 /* AurtsyApp.app */,
+				CC147A1B2ED40FE400ACF597 /* AurtsyAppTests.xctest */,
+				CC147A252ED40FE400ACF597 /* AurtsyAppUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CC147A0D2ED40FE300ACF597 /* AurtsyApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CC147A2F2ED40FE400ACF597 /* Build configuration list for PBXNativeTarget "AurtsyApp" */;
+			buildPhases = (
+				CC147A0A2ED40FE300ACF597 /* Sources */,
+				CC147A0B2ED40FE300ACF597 /* Frameworks */,
+				CC147A0C2ED40FE300ACF597 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				CC147A102ED40FE300ACF597 /* AurtsyApp */,
+			);
+			name = AurtsyApp;
+			packageProductDependencies = (
+			);
+			productName = AurtsyApp;
+			productReference = CC147A0E2ED40FE300ACF597 /* AurtsyApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CC147A1A2ED40FE400ACF597 /* AurtsyAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CC147A322ED40FE400ACF597 /* Build configuration list for PBXNativeTarget "AurtsyAppTests" */;
+			buildPhases = (
+				CC147A172ED40FE400ACF597 /* Sources */,
+				CC147A182ED40FE400ACF597 /* Frameworks */,
+				CC147A192ED40FE400ACF597 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CC147A1D2ED40FE400ACF597 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				CC147A1E2ED40FE400ACF597 /* AurtsyAppTests */,
+			);
+			name = AurtsyAppTests;
+			packageProductDependencies = (
+			);
+			productName = AurtsyAppTests;
+			productReference = CC147A1B2ED40FE400ACF597 /* AurtsyAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		CC147A242ED40FE400ACF597 /* AurtsyAppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CC147A352ED40FE400ACF597 /* Build configuration list for PBXNativeTarget "AurtsyAppUITests" */;
+			buildPhases = (
+				CC147A212ED40FE400ACF597 /* Sources */,
+				CC147A222ED40FE400ACF597 /* Frameworks */,
+				CC147A232ED40FE400ACF597 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CC147A272ED40FE400ACF597 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				CC147A282ED40FE400ACF597 /* AurtsyAppUITests */,
+			);
+			name = AurtsyAppUITests;
+			packageProductDependencies = (
+			);
+			productName = AurtsyAppUITests;
+			productReference = CC147A252ED40FE400ACF597 /* AurtsyAppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CC147A062ED40FE300ACF597 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1640;
+				LastUpgradeCheck = 1640;
+				TargetAttributes = {
+					CC147A0D2ED40FE300ACF597 = {
+						CreatedOnToolsVersion = 16.4;
+						LastSwiftMigration = 1640;
+					};
+					CC147A1A2ED40FE400ACF597 = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = CC147A0D2ED40FE300ACF597;
+					};
+					CC147A242ED40FE400ACF597 = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = CC147A0D2ED40FE300ACF597;
+					};
+				};
+			};
+			buildConfigurationList = CC147A092ED40FE300ACF597 /* Build configuration list for PBXProject "AurtsyApp" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CC147A052ED40FE300ACF597;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = CC147A0F2ED40FE300ACF597 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CC147A0D2ED40FE300ACF597 /* AurtsyApp */,
+				CC147A1A2ED40FE400ACF597 /* AurtsyAppTests */,
+				CC147A242ED40FE400ACF597 /* AurtsyAppUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CC147A0C2ED40FE300ACF597 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CC147A192ED40FE400ACF597 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CC147A232ED40FE400ACF597 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CC147A0A2ED40FE300ACF597 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC147A492ED4117700ACF597 /* ActivityLogView.swift in Sources */,
+				CC147A4A2ED4117700ACF597 /* ActivityFeedView.swift in Sources */,
+				CC147A4B2ED4117700ACF597 /* MealEntryModal.swift in Sources */,
+				CC147A4C2ED4117700ACF597 /* Models.swift in Sources */,
+				CC147A4D2ED4117700ACF597 /* AurtsyApp.swift in Sources */,
+				CC147A4E2ED4117700ACF597 /* PrimaryCapsule.swift in Sources */,
+				CC147A4F2ED4117700ACF597 /* QuickLogDashboard.swift in Sources */,
+				CC147A502ED4117700ACF597 /* ModernHeader.swift in Sources */,
+				CC147A512ED4117700ACF597 /* LocationCheckView.swift in Sources */,
+				CC147A522ED4117700ACF597 /* HydrationLogView.swift in Sources */,
+				CC147A532ED4117700ACF597 /* SleepLogView.swift in Sources */,
+				CC147A542ED4117700ACF597 /* ContentView.swift in Sources */,
+				CC147A552ED4117700ACF597 /* NetworkManager.swift in Sources */,
+				CC147A562ED4117700ACF597 /* ChildManagementView.swift in Sources */,
+				CC147A572ED4117700ACF597 /* BehaviorLogView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CC147A172ED40FE400ACF597 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CC147A212ED40FE400ACF597 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CC147A1D2ED40FE400ACF597 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CC147A0D2ED40FE300ACF597 /* AurtsyApp */;
+			targetProxy = CC147A1C2ED40FE400ACF597 /* PBXContainerItemProxy */;
+		};
+		CC147A272ED40FE400ACF597 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CC147A0D2ED40FE300ACF597 /* AurtsyApp */;
+			targetProxy = CC147A262ED40FE400ACF597 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		CC147A2D2ED40FE400ACF597 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 2KGG5VLWXM;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		CC147A2E2ED40FE400ACF597 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 2KGG5VLWXM;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CC147A302ED40FE400ACF597 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2KGG5VLWXM;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AurtsyApp/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need camera access to take photos of meals for tracking nutrition\nWe need camera access to take photos of meals for tracking nutrition\nWe need camera access to take photos of meals for tracking nutrition";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "We need microphone access for voice dictation of meal notes";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need photo library access to select meal photos";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "We use speech recognition to transcribe your voice notes";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = aurtsy.oauth.AurtsyApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "AurtsyApp-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CC147A312ED40FE400ACF597 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2KGG5VLWXM;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AurtsyApp/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need camera access to take photos of meals for tracking nutrition\nWe need camera access to take photos of meals for tracking nutrition\nWe need camera access to take photos of meals for tracking nutrition";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "We need microphone access for voice dictation of meal notes";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need photo library access to select meal photos";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "We use speech recognition to transcribe your voice notes";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = aurtsy.oauth.AurtsyApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "AurtsyApp-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		CC147A332ED40FE400ACF597 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2KGG5VLWXM;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = aurtsy.oauth.AurtsyAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AurtsyApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/AurtsyApp";
+			};
+			name = Debug;
+		};
+		CC147A342ED40FE400ACF597 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2KGG5VLWXM;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = aurtsy.oauth.AurtsyAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AurtsyApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/AurtsyApp";
+			};
+			name = Release;
+		};
+		CC147A362ED40FE400ACF597 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2KGG5VLWXM;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = aurtsy.oauth.AurtsyAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = AurtsyApp;
+			};
+			name = Debug;
+		};
+		CC147A372ED40FE400ACF597 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2KGG5VLWXM;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = aurtsy.oauth.AurtsyAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = AurtsyApp;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CC147A092ED40FE300ACF597 /* Build configuration list for PBXProject "AurtsyApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CC147A2D2ED40FE400ACF597 /* Debug */,
+				CC147A2E2ED40FE400ACF597 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CC147A2F2ED40FE400ACF597 /* Build configuration list for PBXNativeTarget "AurtsyApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CC147A302ED40FE400ACF597 /* Debug */,
+				CC147A312ED40FE400ACF597 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CC147A322ED40FE400ACF597 /* Build configuration list for PBXNativeTarget "AurtsyAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CC147A332ED40FE400ACF597 /* Debug */,
+				CC147A342ED40FE400ACF597 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CC147A352ED40FE400ACF597 /* Build configuration list for PBXNativeTarget "AurtsyAppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CC147A362ED40FE400ACF597 /* Debug */,
+				CC147A372ED40FE400ACF597 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CC147A062ED40FE300ACF597 /* Project object */;
+}

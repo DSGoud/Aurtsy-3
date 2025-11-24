@@ -1,0 +1,22 @@
+name: AurtsyApp
+options:
+  bundleIdPrefix: com.aurtsy
+  deploymentTarget:
+    iOS: "16.0"
+  createIntermediateGroups: true
+targets:
+  AurtsyApp:
+    type: application
+    platform: iOS
+    sources:
+      - AurtsyApp
+    info:
+      path: AurtsyApp/Info.plist
+      properties:
+        CFBundleDisplayName: Aurtsy
+        UILaunchScreen: {}
+        NSCameraUsageDescription: "We need camera access to take photos of meals for tracking nutrition and progress."
+        NSMicrophoneUsageDescription: "We need microphone access for voice dictation of meal notes."
+        NSPhotoLibraryUsageDescription: "We need photo library access to select meal photos."
+        NSPhotoLibraryAddUsageDescription: "We need permission to save meal photos."
+        NSSpeechRecognitionUsageDescription: "We use speech recognition to transcribe your voice notes about meals and activities."
