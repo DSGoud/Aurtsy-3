@@ -83,7 +83,7 @@ struct FeedItemRow: View {
             
             Spacer()
             
-            Text(item.timeString)
+            Text(item.date, style: .time)
                 .font(.caption)
                 .padding(.horizontal, 8)
                 .padding(.vertical, 4)
