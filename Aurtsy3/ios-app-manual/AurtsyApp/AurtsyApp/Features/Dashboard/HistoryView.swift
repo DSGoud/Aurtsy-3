@@ -40,22 +40,26 @@ struct HistoryView: View {
                     .padding(.horizontal)
                     
                     // Feed
-                    LazyVStack(spacing: 12) {
-                        if filteredFeed.isEmpty {
-                            ContentUnavailableView(
-                                "No Activity",
-                                systemImage: "clock",
-                                description: Text("No logs found for this time range.")
-                            )
-                            .padding(.top, 40)
-                        } else {
-                            ForEach(filteredFeed) { item in
-                                NavigationLink(destination: EventDetailView(item: item)) {
-                                    FeedItemRow(item: item)
+                    ScrollView {
+                        VStack(spacing: 16) {
+                            Group {
+                                if filteredFeed.isEmpty {
+                                    ContentUnavailableView(
+                                        "No Activity",
+                                        systemImage: "clock",
+                                        description: Text("No logs found for this time range.")
+                                    )
+                                    .padding(.top, 40)
+                                } else {
+                                    ForEach(filteredFeed) { item in
+                                        NavigationLink(destination: EventDetailView(item: item)) {
+                                            FeedItemRow(item: item)
+                                        }
+                                    }
                                 }
                             }
+                            .padding(.horizontal)
                         }
-                        .padding(.horizontal)
                     }
                 }
                 .padding(.vertical)
