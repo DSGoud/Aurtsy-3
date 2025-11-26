@@ -1,4 +1,5 @@
 import Foundation
+import SwiftUI
 
 enum Role: String, Codable {
     case admin = "ADMIN"
@@ -48,17 +49,33 @@ struct SleepLog: Codable, Identifiable {
     let qualityRating: Int?
     let notes: String?
     let createdAt: Date
-    
-    enum CodingKeys: String, CodingKey {
-        case id
-        case childId = "child_id"
-        case startTime = "start_time"
-        case endTime = "end_time"
-        case durationMinutes = "duration_minutes"
-        case qualityRating = "quality_rating"
-        case notes
-        case createdAt = "created_at"
-    }
+}
+
+struct Activity: Codable, Identifiable {
+    let id: Int
+    let childId: String
+    let activityType: String
+    let durationMinutes: Int
+    let details: String?
+    let createdAt: Date
+}
+
+struct HydrationLog: Codable, Identifiable {
+    let id: Int
+    let childId: String
+    let fluidType: String
+    let amountMl: Int
+    let notes: String?
+    let createdAt: Date
+}
+
+struct LocationCheck: Codable, Identifiable {
+    let id: Int
+    let childId: String
+    let latitude: String
+    let longitude: String
+    let locationName: String
+    let createdAt: Date
 }
 
 struct BehaviorLog: Codable, Identifiable {
@@ -71,121 +88,52 @@ struct BehaviorLog: Codable, Identifiable {
     let createdAt: Date
 }
 
-struct HydrationLog: Codable, Identifiable {
-    let id: Int
-    let childId: String
-    let fluidType: String
-    let amountMl: Int
-    let createdAt: Date
-    
-    enum CodingKeys: String, CodingKey {
-        case id
-        case childId = "child_id"
-        case fluidType = "fluid_type"
-        case amountMl = "amount_ml"
-        case createdAt = "created_at"
-    }
-}
-
 struct DailyHydrationTotal: Codable {
     let childId: String
     let date: String
     let totalMl: Int
-    
-    enum CodingKeys: String, CodingKey {
-        case childId = "child_id"
-        case date
-        case totalMl = "total_ml"
-    }
 }
 
-struct LocationCheck: Codable, Identifiable {
-    let id: Int
-    let childId: String
-    let latitude: String
-    let longitude: String
-    let locationName: String?
-    let notes: String?
-    let createdAt: Date
-    
-    enum CodingKeys: String, CodingKey {
-        case id
-        case childId = "child_id"
-        case latitude, longitude
-        case locationName = "location_name"
-        case notes
-        case createdAt = "created_at"
-    }
+enum FeedItemType: String, Codable {
+    case meal, behavior, sleep, activity, hydration
 }
 
-struct Activity: Codable, Identifiable {
-    let id: Int
-    let childId: String
-    let activityType: String
-    let details: [String: AnyCodable]?
-    let createdAt: Date
-    
-    enum CodingKeys: String, CodingKey {
-        case id
-        case childId = "child_id"
-        case activityType = "activity_type"
-        case details
-        case createdAt = "created_at"
-    }
-}
-
-// Helper for AnyCodable since Swift Codable doesn't handle [String: Any] directly
-struct AnyCodable: Codable {
-    let value: Any
-    
-    init(_ value: Any) {
-        self.value = value
-    }
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.singleValueContainer()
-        if let x = try? container.decode(Int.self) { value = x }
-        else if let x = try? container.decode(Double.self) { value = x }
-        else if let x = try? container.decode(String.self) { value = x }
-        else if let x = try? container.decode(Bool.self) { value = x }
-        else { throw DecodingError.dataCorruptedError(in: container, debugDescription: "AnyCodable value cannot be decoded") }
-    }
-    
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.singleValueContainer()
-        if let x = value as? Int { try container.encode(x) }
-        else if let x = value as? Double { try container.encode(x) }
-        else if let x = value as? String { try container.encode(x) }
-        else if let x = value as? Bool { try container.encode(x) }
-        else { throw EncodingError.invalidValue(value, EncodingError.Context(codingPath: encoder.codingPath, debugDescription: "AnyCodable value cannot be encoded")) }
-    }
-}
-
-// Feed Models
-enum FeedItemType {
-    case meal
-    case sleep, behavior, hydration, location, activity
-}
-
-struct FeedItem: Identifiable {
+struct FeedItem: Identifiable, Equatable {
     let id: String
     let type: FeedItemType
     let title: String
     let subtitle: String
     let date: Date
     let icon: String
-    let color: Color
     
-    var timeString: String {
-        let formatter = RelativeDateTimeFormatter()
-        formatter.unitsStyle = .abbreviated
-        return formatter.localizedString(for: date, relativeTo: Date())
+    static func == (lhs: FeedItem, rhs: FeedItem) -> Bool {
+        lhs.id == rhs.id
+    }
+    
+    var color: Color {
+        switch self.type {
+        case .meal: return .orange
+        case .behavior: return .purple
+        case .sleep: return .blue
+        case .activity: return .green
+        case .hydration: return .cyan
+        }
     }
 }
 
-import SwiftUI // For Color
+struct HandoffSummary: Codable {
+    let summary: [String]
+    let alertLevel: String
+    let recommendations: [String]
+}
 
-struct RawActivityFeed: Codable {
+struct VoiceProcessResponse: Codable {
+    let success: Bool
+    let processedTypes: [String]
+    let message: String
+}
+
+struct ActivityFeed: Codable {
     let childId: String
     let sleepLogs: [SleepLog]
     let behaviorLogs: [BehaviorLog]
@@ -203,3 +151,54 @@ struct RawActivityFeed: Codable {
     }
 }
 
+// MARK: - Analytics Models
+
+struct RegulationBattery: Codable {
+    let level: Int // 0-100
+    let status: String // High, Moderate, Low, Critical
+    let inputs: [String]
+    let drains: [String]
+    let recommendation: String
+}
+
+struct OpenLoop: Codable, Identifiable {
+    let id: Int
+    let requestObject: String
+    let status: String
+    let timestamp: Date
+    let timeElapsedMinutes: Int
+    let riskLevel: String
+}
+
+struct ABCStat: Codable {
+    let label: String
+    let count: Int
+    let percentage: Double
+}
+
+struct ABCAnalysis: Codable {
+    let topTriggers: [ABCStat]
+    let effectiveInterventions: [ABCStat]
+    let totalIncidents: Int
+}
+
+struct Insight: Codable {
+    let type: String // correlation, pattern, alert
+    let title: String
+    let description: String
+    let confidence: String
+    let actionableTip: String?
+}
+
+struct WeeklySummary: Codable {
+    let weekStart: Date
+    let weekEnd: Date
+    let totalMeals: Int
+    let totalSleepHours: Double
+    let avgSleepQuality: Double
+    let totalIncidents: Int
+    let regulationBattery: RegulationBattery
+    let openLoops: [OpenLoop]
+    let abcAnalysis: ABCAnalysis
+    let insights: [Insight]
+}

@@ -34,11 +34,26 @@ struct ContentView: View {
                     }
                     .tag(1)
                 
+                // Insights Tab
+                if let selectedChild = network.selectedChild {
+                    InsightsView(childId: selectedChild.id)
+                        .tabItem {
+                            Label("Insights", systemImage: "chart.xyaxis.line")
+                        }
+                        .tag(2)
+                } else {
+                    Text("Select a child to view insights")
+                        .tabItem {
+                            Label("Insights", systemImage: "chart.xyaxis.line")
+                        }
+                        .tag(2)
+                }
+                
                 ProfileView()
                     .tabItem {
                         Label("Profile", systemImage: "person")
                     }
-                    .tag(2)
+                    .tag(3)
             }
             .environmentObject(network)
             .sheet(isPresented: $showMealEntry) {

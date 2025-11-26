@@ -674,4 +674,54 @@ class NetworkManager: ObservableObject {
             }
         }.resume()
     }
+    
+    // MARK: - Analytics
+    
+    @Published var weeklySummary: WeeklySummary?
+    @Published var isLoadingAnalytics = false
+    
+    func fetchWeeklySummary(childId: String) {
+        guard let url = URL(string: "\(baseURL)/analytics/weekly-summary/\(childId)") else { return }
+        
+        isLoadingAnalytics = true
+        
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        
+        // Custom date decoder for ISO8601 with fractional seconds
+        let dateFormatter = ISO8601DateFormatter()
+        dateFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+        decoder.dateDecodingStrategy = .custom { decoder in
+            let container = try decoder.singleValueContainer()
+            let dateString = try container.decode(String.self)
+            if let date = dateFormatter.date(from: dateString) {
+                return date
+            }
+            throw DecodingError.dataCorruptedError(in: container, debugDescription: "Cannot decode date string \(dateString)")
+        }
+        
+        URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+            guard let self = self else { return }
+            
+            DispatchQueue.main.async {
+                self.isLoadingAnalytics = false
+            }
+            
+            if let error = error {
+                print("❌ Analytics fetch error: \(error)")
+                return
+            }
+            
+            guard let data = data else { return }
+            
+            do {
+                let summary = try decoder.decode(WeeklySummary.self, from: data)
+                DispatchQueue.main.async {
+                    self.weeklySummary = summary
+                }
+            } catch {
+                print("❌ Analytics decode error: \(error)")
+            }
+        }.resume()
+    }
 }
