@@ -17,13 +17,11 @@ struct ActivityLogView: View {
                         VStack(alignment: .leading) {
                             Text(log.activityType)
                                 .font(.headline)
-                            if let details = log.details, let duration = details["duration_minutes"] as? Int {
-                                Text("\(duration) minutes")
-                                    .font(.subheadline)
-                                    .foregroundColor(.secondary)
-                            }
-                            if let details = log.details, let note = details["notes"] as? String, !note.isEmpty {
-                                Text(note)
+                            Text("\(log.durationMinutes) minutes")
+                                .font(.subheadline)
+                                .foregroundColor(.secondary)
+                            if let details = log.details, !details.isEmpty {
+                                Text(details)
                                     .font(.caption)
                                     .foregroundColor(.secondary)
                                     .lineLimit(1)
