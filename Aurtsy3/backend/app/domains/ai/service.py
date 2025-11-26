@@ -1,0 +1,299 @@
+from sqlalchemy.orm import Session
+from app.domains.ai import schemas
+from app.domains.children import models as child_models
+from app.domains.meals import models as meal_models
+from app.domains.behavior import models as behavior_models
+from app.domains.sleep import models as sleep_models
+from app.domains.activities import models as activity_models
+from app.domains.hydration import models as hydration_models
+from app.core.llm import ollama_client
+from datetime import datetime, timedelta
+import json
+
+class AIService:
+    def generate_handoff_summary(self, db: Session, child_id: str) -> schemas.HandoffSummary:
+        """
+        Generate an AI-powered handoff summary for caregivers.
+        Uses Ollama LLM to analyze recent data and provide insights.
+        """
+        # 1. Fetch last 12 hours of ALL data types
+        twelve_hours_ago = datetime.utcnow() - timedelta(hours=12)
+        
+        # Import additional models
+        from app.domains.sleep import models as sleep_models
+        from app.domains.behavior import models as behavior_models
+        from app.domains.activities import models as activity_models
+        from app.domains.hydration import models as hydration_models
+        
+        recent_meals = db.query(meal_models.Meal).filter(
+            meal_models.Meal.child_id == child_id,
+            meal_models.Meal.created_at >= twelve_hours_ago
+        ).all()
+        
+        recent_sleep = db.query(sleep_models.SleepLog).filter(
+            sleep_models.SleepLog.child_id == child_id,
+            sleep_models.SleepLog.start_time >= twelve_hours_ago
+        ).all()
+        
+        recent_behavior = db.query(behavior_models.BehaviorLog).filter(
+            behavior_models.BehaviorLog.child_id == child_id,
+            behavior_models.BehaviorLog.created_at >= twelve_hours_ago
+        ).all()
+        
+        recent_activities = db.query(activity_models.Activity).filter(
+            activity_models.Activity.child_id == child_id,
+            activity_models.Activity.created_at >= twelve_hours_ago
+        ).all()
+        
+        recent_hydration = db.query(hydration_models.HydrationLog).filter(
+            hydration_models.HydrationLog.child_id == child_id,
+            hydration_models.HydrationLog.created_at >= twelve_hours_ago
+        ).all()
+        
+        # 2. Fetch child profile for context
+        child = db.query(child_models.Child).filter(child_models.Child.id == child_id).first()
+        child_name = child.name if child else "the individual"
+        
+        # 3. Prepare all data for LLM
+        meal_data = [{"type": m.meal_type, "notes": m.notes, "time": m.created_at.isoformat()} for m in recent_meals]
+        sleep_data = [{"start": s.start_time.isoformat(), "end": s.end_time.isoformat() if s.end_time else "ongoing", "quality": s.quality_rating, "notes": s.notes} for s in recent_sleep]
+        behavior_data = [{"type": b.behavior_type, "mood": b.mood_rating, "description": b.incident_description, "notes": b.notes, "time": b.created_at.isoformat()} for b in recent_behavior]
+        activity_data = [{"type": a.activity_type, "details": a.details, "time": a.created_at.isoformat()} for a in recent_activities]
+        hydration_data = [{"fluid": h.fluid_type, "amount_ml": h.amount_ml, "notes": h.notes, "time": h.created_at.isoformat()} for h in recent_hydration]
+        
+        # 4. Build comprehensive prompt for LLM
+        system_prompt = f"""You are a compassionate AI assistant helping caregivers of {child_name}, an individual with special needs. 
+Your role is to analyze recent caregiving data and provide a concise, actionable handoff summary.
+Be empathetic, clear, and focus on what matters most to caregivers. Always reference {child_name} by name in your recommendations."""
+        
+        user_prompt = f"""Analyze this caregiving data for {child_name} from the last 12 hours and create a handoff summary.
+
+**Patient Profile:**
+- Name: {child_name}
+
+**Recent Data:**
+- Meals/Snacks: {len(meal_data)} logged
+{json.dumps(meal_data, indent=2) if meal_data else "No meals logged"}
+
+- Sleep: {len(sleep_data)} periods
+{json.dumps(sleep_data, indent=2) if sleep_data else "No sleep data"}
+
+- Behavior: {len(behavior_data)} incidents/observations
+{json.dumps(behavior_data, indent=2) if behavior_data else "No behavior logs"}
+
+- Activities: {len(activity_data)} logged
+{json.dumps(activity_data, indent=2) if activity_data else "No activities"}
+
+- Hydration: {len(hydration_data)} drinks
+{json.dumps(hydration_data, indent=2) if hydration_data else "No hydration logs"}
+
+**Task:**
+1. Provide 2-3 concise bullet points summarizing KEY observations about {child_name}'s day (look for patterns across sleep, diet, behavior)
+2. Assign an alert level: LOW (all good), MEDIUM (minor concerns), or HIGH (urgent attention needed)
+3. Provide 1-2 SPECIFIC, actionable recommendations for {child_name}'s care team based on the holistic data
+
+**Important:**
+- Reference {child_name} by name
+- Connect dots between different data types (e.g., "Poor sleep may be affecting behavior")
+- Make recommendations SPECIFIC to the actual data
+
+**Response Format (JSON):**
+{{
+  "summary": ["specific observation 1", "specific observation 2"],
+  "alert_level": "LOW|MEDIUM|HIGH",
+  "recommendations": ["specific recommendation 1", "specific recommendation 2"]
+}}
+
+Respond ONLY with valid JSON, no additional text."""
+        
+        try:
+            # 5. Call Ollama LLM
+            response = ollama_client.chat(
+                messages=[
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": user_prompt}
+                ],
+                temperature=0.3  # Lower temperature for more consistent output
+            )
+            
+            # 5. Parse LLM response
+            # Try to extract JSON from response
+            response_text = response.strip()
+            if "```json" in response_text:
+                response_text = response_text.split("```json")[1].split("```")[0].strip()
+            elif "```" in response_text:
+                response_text = response_text.split("```")[1].split("```")[0].strip()
+            
+            result = json.loads(response_text)
+            
+            return schemas.HandoffSummary(
+                summary=result.get("summary", []),
+                alert_level=schemas.AlertLevel[result.get("alert_level", "MEDIUM")],
+                recommendations=result.get("recommendations", [])
+            )
+            
+        except Exception as e:
+            # Fallback to simple logic if LLM fails
+            print(f"LLM error: {e}, falling back to simple logic")
+            summary_points = []
+            if not recent_meals:
+                summary_points.append("No meals logged in the last 12 hours.")
+                alert_level = schemas.AlertLevel.MEDIUM
+            else:
+                summary_points.append(f"Consumed {len(recent_meals)} meals/snacks.")
+                alert_level = schemas.AlertLevel.LOW
+            
+            summary_points.append("Sleep and behavior data not yet available.")
+            
+            return schemas.HandoffSummary(
+                summary=summary_points,
+                alert_level=alert_level,
+                recommendations=["Check hydration.", "Monitor for patterns."]
+            )
+
+    def process_voice_log(self, db: Session, child_id: str, user_id: str, text: str) -> schemas.VoiceProcessResponse:
+        """
+        Process a natural language voice log, classify it, and save to appropriate tables.
+        """
+        # 1. Construct Prompt
+        system_prompt = """You are an intelligent data entry assistant for a special needs caregiving app.
+Your task is to analyze a voice note and extract structured data to save into the database.
+
+**CRITICAL: A single voice note often contains MULTIPLE events. Extract ALL of them.**
+
+Supported Data Types:
+1. MEAL: Food/drink intake
+2. BEHAVIOR: Moods, meltdowns, positive moments, anxiety, tantrums, aggression, self-harm
+3. SLEEP: Naps, bedtime, wake up, sleep quality
+4. ACTIVITY: Therapy, play, exercise
+5. HYDRATION: Water, juice, milk intake
+
+**Behavior Analysis (ABC Model):**
+For behaviors, identify:
+- **Antecedent**: What happened BEFORE the behavior (triggers, context)
+- **Behavior**: The actual behavior/incident
+- **Consequence**: What happened AFTER, how it was resolved
+
+Rules:
+- **ALWAYS look for behavioral context around meals/activities** (e.g., "offered snack after meltdown" = BOTH behavior + meal)
+- Extract temporal relationships (e.g., "earlier today he had a meltdown, then we gave him a snack")
+- For behaviors, classify as: positive, meltdown, anxiety, tantrum, aggression, self-harm, neutral
+- Mood rating: 1 (very bad) to 5 (very good)
+- If unsure about mood, use 3 (neutral)
+
+Response Format (JSON):
+{
+  "classifications": ["MEAL", "BEHAVIOR"],
+  "entries": [
+    {
+      "type": "BEHAVIOR",
+      "data": {
+        "behavior_type": "meltdown",
+        "mood_rating": 2,
+        "incident_description": "<ABC format: Antecedent - what triggered it, Behavior - what happened, Consequence - how resolved>",
+        "notes": "<original text or relevant excerpt>"
+      }
+    },
+    {
+      "type": "MEAL",
+      "data": {
+        "meal_type": "SNACK",
+        "notes": "<what they ate>"
+      }
+    }
+  ]
+}
+
+**Examples:**
+- "Had a meltdown, gave him crackers, felt better" → BEHAVIOR (meltdown, antecedent: unknown, consequence: resolved with food) + MEAL (crackers)
+- "Anxious before therapy" → BEHAVIOR (anxiety before activity)
+- "Ate lunch happily" → MEAL + BEHAVIOR (positive mood)
+"""
+        user_prompt = f"Voice Note: \"{text}\""
+
+        try:
+            # 2. Call LLM
+            response = ollama_client.chat(
+                messages=[
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": user_prompt}
+                ],
+                temperature=0.1
+            )
+            
+            # 3. Parse JSON
+            response_text = response.strip()
+            if "```json" in response_text:
+                response_text = response_text.split("```json")[1].split("```")[0].strip()
+            elif "```" in response_text:
+                response_text = response_text.split("```")[1].split("```")[0].strip()
+            
+            result = json.loads(response_text)
+            processed_types = []
+            
+            # 4. Save to DB
+            for entry in result.get("entries", []):
+                entry_type = entry.get("type")
+                data = entry.get("data")
+                
+                if entry_type == "MEAL":
+                    new_meal = meal_models.Meal(
+                        child_id=child_id,
+                        user_id=user_id,
+                        meal_type=data.get("meal_type", "SNACK"),
+                        notes=data.get("notes", text)
+                    )
+                    db.add(new_meal)
+                    processed_types.append("meal")
+                    
+                elif entry_type == "BEHAVIOR":
+                    new_behavior = behavior_models.BehaviorLog(
+                        child_id=child_id,
+                        behavior_type=data.get("behavior_type", "neutral"),
+                        mood_rating=data.get("mood_rating", 3),
+                        incident_description=data.get("incident_description", text),
+                        notes=data.get("notes", text)
+                    )
+                    db.add(new_behavior)
+                    processed_types.append("behavior")
+                
+                # (Add other types as needed, for now focusing on Meal/Behavior as requested)
+            
+            db.commit()
+            
+            return schemas.VoiceProcessResponse(
+                success=True,
+                processed_types=processed_types,
+                message=f"Successfully processed: {', '.join(processed_types)}"
+            )
+            
+        except Exception as e:
+            import traceback
+            error_msg = f"Error: {str(e)}\n{traceback.format_exc()}"
+            print(error_msg)
+            
+            # Fallback: Save as generic behavior note
+            try:
+                fallback_behavior = behavior_models.BehaviorLog(
+                    child_id=child_id,
+                    behavior_type="voice_note",
+                    mood_rating=3,
+                    incident_description=text,
+                    notes=f"Processed via fallback. Original error: {str(e)}"
+                )
+                db.add(fallback_behavior)
+                db.commit()
+                
+                return schemas.VoiceProcessResponse(
+                    success=True,
+                    processed_types=["behavior"],
+                    message=f"Saved as general note. AI Error: {str(e)}"
+                )
+            except Exception as db_error:
+                return schemas.VoiceProcessResponse(
+                    success=False,
+                    processed_types=[],
+                    message=f"Critical Error: {str(e)} | DB Error: {str(db_error)}"
+                )
+
+ai_service = AIService()
