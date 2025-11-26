@@ -682,15 +682,31 @@ class NetworkManager: ObservableObject {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         
-        // Custom date decoder for ISO8601 with fractional seconds
-        let dateFormatter = ISO8601DateFormatter()
-        dateFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+        // Custom date decoder for multiple formats
         decoder.dateDecodingStrategy = .custom { decoder in
             let container = try decoder.singleValueContainer()
             let dateString = try container.decode(String.self)
-            if let date = dateFormatter.date(from: dateString) {
+            
+            // Try ISO8601 with fractional seconds first
+            let iso8601Formatter = ISO8601DateFormatter()
+            iso8601Formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+            if let date = iso8601Formatter.date(from: dateString) {
                 return date
             }
+            
+            // Try ISO8601 without fractional seconds
+            iso8601Formatter.formatOptions = [.withInternetDateTime]
+            if let date = iso8601Formatter.date(from: dateString) {
+                return date
+            }
+            
+            // Try simple date format (YYYY-MM-DD)
+            let simpleDateFormatter = DateFormatter()
+            simpleDateFormatter.dateFormat = "yyyy-MM-dd"
+            if let date = simpleDateFormatter.date(from: dateString) {
+                return date
+            }
+            
             throw DecodingError.dataCorruptedError(in: container, debugDescription: "Cannot decode date string \(dateString)")
         }
         
