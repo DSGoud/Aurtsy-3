@@ -87,7 +87,7 @@ class NetworkManager: ObservableObject {
         
         // Add activity logs
         for log in activityLogs {
-            let duration = (log.details?["duration_minutes"] as? Int) ?? 0
+            let duration = log.durationMinutes
             items.append(FeedItem(
                 id: "activity-\(log.id)",
                 type: .activity,
