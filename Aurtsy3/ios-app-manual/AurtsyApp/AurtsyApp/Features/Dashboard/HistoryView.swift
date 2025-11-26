@@ -39,65 +39,18 @@ struct HistoryView: View {
                     .pickerStyle(.segmented)
                     .padding(.horizontal)
                     
-                    // Visualizations
-                    if !filteredFeed.isEmpty {
-                        VStack(alignment: .leading, spacing: 16) {
-                            Text("Trends")
-                                .font(.headline)
-                                .padding(.horizontal)
-                            
-                            ScrollView(.horizontal, showsIndicators: false) {
-                                HStack(spacing: 16) {
-                                    // Mood Chart
-                                    ChartCard(title: "Mood") {
-                                        Chart {
-                                            ForEach(network.behaviorLogs.filter { $0.createdAt >= Date().addingTimeInterval(-Double(timeRange.hours) * 3600) }) { log in
-                                                if let mood = log.moodRating {
-                                                    LineMark(
-                                                        x: .value("Time", log.createdAt),
-                                                        y: .value("Mood", mood)
-                                                    )
-                                                    .foregroundStyle(Color.purple)
-                                                    .symbol(Circle())
-                                                }
-                                            }
-                                        }
-                                        .chartYScale(domain: 1...5)
-                                    }
-                                    
-                                    // Sleep Chart
-                                    ChartCard(title: "Sleep (hrs)") {
-                                        Chart {
-                                            ForEach(network.sleepLogs.filter { $0.startTime >= Date().addingTimeInterval(-Double(timeRange.hours) * 3600) }) { log in
-                                                if let duration = log.durationMinutes {
-                                                    BarMark(
-                                                        x: .value("Time", log.startTime),
-                                                        y: .value("Hours", Double(duration) / 60.0)
-                                                    )
-                                                    .foregroundStyle(Color.blue)
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                                .padding(.horizontal)
-                            }
-                        }
-                    }
-                    
-                    // Detailed List
-                    VStack(alignment: .leading) {
-                        Text("Detailed Logs")
-                            .font(.headline)
-                            .padding(.horizontal)
-                        
-                        LazyVStack(spacing: 12) {
-                            if filteredFeed.isEmpty {
-                                Text("No activity in this time range")
-                                    .foregroundColor(.secondary)
-                                    .padding()
-                            } else {
-                                ForEach(filteredFeed) { item in
+                    // Feed
+                    LazyVStack(spacing: 12) {
+                        if filteredFeed.isEmpty {
+                            ContentUnavailableView(
+                                "No Activity",
+                                systemImage: "clock",
+                                description: Text("No logs found for this time range.")
+                            )
+                            .padding(.top, 40)
+                        } else {
+                            ForEach(filteredFeed) { item in
+                                NavigationLink(destination: EventDetailView(item: item)) {
                                     FeedItemRow(item: item)
                                 }
                             }

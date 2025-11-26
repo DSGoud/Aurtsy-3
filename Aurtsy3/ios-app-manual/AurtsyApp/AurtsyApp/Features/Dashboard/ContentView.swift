@@ -24,7 +24,7 @@ struct ContentView: View {
                     showMealEntry = true
                 })
                 .tabItem {
-                    Label("Dashboard", systemImage: "house")
+                    Label("Home", systemImage: "house")
                 }
                 .tag(0)
                 

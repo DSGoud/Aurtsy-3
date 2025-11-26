@@ -10,18 +10,12 @@ from app.domains.sleep import router as sleep_router, models as sleep_models
 from app.domains.behavior import router as behavior_router, models as behavior_models
 from app.domains.activities import router as activity_router, models as activity_models
 from app.domains.hydration import router as hydration_router, models as hydration_models
+from app.domains.analytics import router as analytics_router, schemas as analytics_schemas
 
 # Create tables (in a real app, use Alembic migrations)
-user_models.Base.metadata.create_all(bind=engine)
-child_models.Base.metadata.create_all(bind=engine)
-meal_models.Base.metadata.create_all(bind=engine)
-ai_models.Base.metadata.create_all(bind=engine)
-knowledge_models.Base.metadata.create_all(bind=engine)
-alert_models.Base.metadata.create_all(bind=engine)
-sleep_models.Base.metadata.create_all(bind=engine)
-behavior_models.Base.metadata.create_all(bind=engine)
-activity_models.Base.metadata.create_all(bind=engine)
-hydration_models.Base.metadata.create_all(bind=engine)
+# Import all models to ensure they are registered with Base
+from app.core.database import Base
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Aurtsy API", version="0.3.0")
 
@@ -45,6 +39,7 @@ app.include_router(sleep_router.router, prefix="/sleep", tags=["sleep"])
 app.include_router(behavior_router.router, prefix="/behavior", tags=["behavior"])
 app.include_router(activity_router.router, prefix="/activities", tags=["activities"])
 app.include_router(hydration_router.router, prefix="/hydration", tags=["hydration"])
+app.include_router(analytics_router.router, prefix="/analytics", tags=["analytics"])
 
 @app.get("/health")
 def health_check():

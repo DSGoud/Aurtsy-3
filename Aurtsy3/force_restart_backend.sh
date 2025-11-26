@@ -10,17 +10,17 @@ echo "🔄 Force restarting backend on $SERVER_USER@$SERVER_IP..."
 
 ssh $SERVER_USER@$SERVER_IP "
     export PATH=\$HOME/.local/bin:\$PATH
-    cd ~/$SERVER_DIR
+    cd ~/$SERVER_DIR/backend
     
     echo 'Stopping old process...'
-    pkill -f 'uvicorn main:app' || true
+    pkill -f 'uvicorn app.main:app' || true
     sleep 2
     
     echo 'Starting new process...'
     export DATABASE_URL='$DB_URL'
     
     # Use nohup and python3 -m uvicorn
-    nohup python3 -m uvicorn main:app --host 0.0.0.0 --port 8090 > backend.log 2>&1 &
+    nohup python3 -m uvicorn app.main:app --host 0.0.0.0 --port 8090 > backend.log 2>&1 &
 "
 
 echo "✅ Restart command sent. Waiting 5 seconds..."

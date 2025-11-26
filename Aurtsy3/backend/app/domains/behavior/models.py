@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, DateTime, Integer, Text, ForeignKey
+from sqlalchemy import Column, String, DateTime, Integer, Text, ForeignKey, JSON
 from sqlalchemy.sql import func
 from app.core.database import Base
 
@@ -11,4 +11,5 @@ class BehaviorLog(Base):
     mood_rating = Column(Integer, nullable=True) # 1-5
     incident_description = Column(Text, nullable=True)
     notes = Column(Text, nullable=True)
+    analysis_data = Column(JSON, nullable=True) # Structured ABC data, request status, etc.
     created_at = Column(DateTime(timezone=True), server_default=func.now(), nullable=False)

@@ -163,23 +163,25 @@ Your task is to analyze a voice note and extract structured data to save into th
 
 Supported Data Types:
 1. MEAL: Food/drink intake
-2. BEHAVIOR: Moods, meltdowns, positive moments, anxiety, tantrums, aggression, self-harm
+2. BEHAVIOR: Moods, meltdowns, positive moments, anxiety, tantrums, aggression, self-harm, REQUESTS
 3. SLEEP: Naps, bedtime, wake up, sleep quality
 4. ACTIVITY: Therapy, play, exercise
 5. HYDRATION: Water, juice, milk intake
 
-**Behavior Analysis (ABC Model):**
+**Behavior Analysis (ABC Model + Requests):**
 For behaviors, identify:
-- **Antecedent**: What happened BEFORE the behavior (triggers, context)
+- **Antecedent**: What happened BEFORE (triggers, context)
 - **Behavior**: The actual behavior/incident
 - **Consequence**: What happened AFTER, how it was resolved
+- **Intervention**: Specific strategy used (e.g., "deep pressure", "gave snack")
+- **Request Status**: If they asked for something, was it GRANTED, DENIED, DELAYED, or UNRESOLVED?
+- **Food Seeking**: Is this a request for food (even if not eaten)? true/false
 
 Rules:
-- **ALWAYS look for behavioral context around meals/activities** (e.g., "offered snack after meltdown" = BOTH behavior + meal)
-- Extract temporal relationships (e.g., "earlier today he had a meltdown, then we gave him a snack")
-- For behaviors, classify as: positive, meltdown, anxiety, tantrum, aggression, self-harm, neutral
+- **ALWAYS look for behavioral context around meals/activities**
+- Extract temporal relationships
+- For behaviors, classify as: positive, meltdown, anxiety, tantrum, aggression, self-harm, neutral, request
 - Mood rating: 1 (very bad) to 5 (very good)
-- If unsure about mood, use 3 (neutral)
 
 Response Format (JSON):
 {
@@ -190,24 +192,28 @@ Response Format (JSON):
       "data": {
         "behavior_type": "meltdown",
         "mood_rating": 2,
-        "incident_description": "<ABC format: Antecedent - what triggered it, Behavior - what happened, Consequence - how resolved>",
-        "notes": "<original text or relevant excerpt>"
+        "incident_description": "Full narrative summary...",
+        "notes": "Original text...",
+        "analysis_data": {
+          "antecedent": "Denied access to iPad",
+          "behavior": "Screaming and hitting",
+          "consequence": "Removed to quiet room",
+          "intervention": "Deep pressure",
+          "request_object": "iPad",
+          "request_status": "DENIED",
+          "food_seeking": false
+        }
       }
     },
     {
       "type": "MEAL",
       "data": {
         "meal_type": "SNACK",
-        "notes": "<what they ate>"
+        "notes": "Popcorn"
       }
     }
   ]
 }
-
-**Examples:**
-- "Had a meltdown, gave him crackers, felt better" → BEHAVIOR (meltdown, antecedent: unknown, consequence: resolved with food) + MEAL (crackers)
-- "Anxious before therapy" → BEHAVIOR (anxiety before activity)
-- "Ate lunch happily" → MEAL + BEHAVIOR (positive mood)
 """
         user_prompt = f"Voice Note: \"{text}\""
 
@@ -247,12 +253,26 @@ Response Format (JSON):
                     processed_types.append("meal")
                     
                 elif entry_type == "BEHAVIOR":
+                    # Extract analysis data
+                    analysis_data = data.get("analysis_data", {})
+                    
+                    # Ensure incident_description is populated
+                    description = data.get("incident_description")
+                    if not description:
+                        # Fallback: Construct from ABC if description missing
+                        parts = []
+                        if analysis_data.get("antecedent"): parts.append(f"Trigger: {analysis_data['antecedent']}")
+                        if analysis_data.get("behavior"): parts.append(f"Behavior: {analysis_data['behavior']}")
+                        if analysis_data.get("consequence"): parts.append(f"Result: {analysis_data['consequence']}")
+                        description = " | ".join(parts) if parts else text
+
                     new_behavior = behavior_models.BehaviorLog(
                         child_id=child_id,
                         behavior_type=data.get("behavior_type", "neutral"),
                         mood_rating=data.get("mood_rating", 3),
-                        incident_description=data.get("incident_description", text),
-                        notes=data.get("notes", text)
+                        incident_description=description,
+                        notes=data.get("notes", text),
+                        analysis_data=analysis_data
                     )
                     db.add(new_behavior)
                     processed_types.append("behavior")
