@@ -151,6 +151,9 @@ struct ActivityFeed: Codable {
     }
 }
 
+// Alias for backward compatibility with NetworkManager
+typealias RawActivityFeed = ActivityFeed
+
 // MARK: - Analytics Models
 
 struct RegulationBattery: Codable {
