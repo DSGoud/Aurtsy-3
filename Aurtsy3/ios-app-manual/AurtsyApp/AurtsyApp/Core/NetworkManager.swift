@@ -33,8 +33,7 @@ class NetworkManager: ObservableObject {
                 title: meal.mealType,
                 subtitle: meal.notes ?? "Meal logged",
                 date: meal.createdAt,
-                icon: "fork.knife",
-                color: .orange
+                icon: "fork.knife"
             ))
         }
         
@@ -46,8 +45,7 @@ class NetworkManager: ObservableObject {
                 title: "Sleep Log",
                 subtitle: log.endTime == nil ? "Started sleeping" : "Slept for \(log.durationMinutes ?? 0)m",
                 date: log.startTime,
-                icon: "bed.double.fill",
-                color: .blue
+                icon: "bed.double.fill"
             ))
         }
         
@@ -59,8 +57,7 @@ class NetworkManager: ObservableObject {
                 title: log.behaviorType.capitalized,
                 subtitle: log.incidentDescription ?? "Mood: \(log.moodRating ?? 0)/5",
                 date: log.createdAt,
-                icon: "brain.head.profile",
-                color: .purple
+                icon: "brain.head.profile"
             ))
         }
         
@@ -72,8 +69,7 @@ class NetworkManager: ObservableObject {
                 title: "Hydration",
                 subtitle: "\(log.amountMl)ml of \(log.fluidType)",
                 date: log.createdAt,
-                icon: "drop.fill",
-                color: .cyan
+                icon: "drop.fill"
             ))
         }
         
@@ -81,12 +77,11 @@ class NetworkManager: ObservableObject {
         for log in locationChecks {
             items.append(FeedItem(
                 id: "location-\(log.id)",
-                type: .location,
+                type: .activity,
                 title: "Location Check",
                 subtitle: log.locationName ?? "Check-in recorded",
                 date: log.createdAt,
-                icon: "location.fill",
-                color: .red
+                icon: "location.fill"
             ))
         }
         
@@ -99,8 +94,7 @@ class NetworkManager: ObservableObject {
                 title: log.activityType,
                 subtitle: "\(duration) mins",
                 date: log.createdAt,
-                icon: "figure.walk",
-                color: .green
+                icon: "figure.walk"
             ))
         }
         
