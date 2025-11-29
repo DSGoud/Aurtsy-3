@@ -11,6 +11,7 @@ from app.domains.behavior import router as behavior_router, models as behavior_m
 from app.domains.activities import router as activity_router, models as activity_models
 from app.domains.hydration import router as hydration_router, models as hydration_models
 from app.domains.analytics import router as analytics_router, schemas as analytics_schemas
+from app.domains.chat import router as chat_router, models as chat_models
 
 # Create tables (in a real app, use Alembic migrations)
 # Import all models to ensure they are registered with Base
@@ -40,6 +41,7 @@ app.include_router(behavior_router.router, prefix="/behavior", tags=["behavior"]
 app.include_router(activity_router.router, prefix="/activities", tags=["activities"])
 app.include_router(hydration_router.router, prefix="/hydration", tags=["hydration"])
 app.include_router(analytics_router.router, prefix="/analytics", tags=["analytics"])
+app.include_router(chat_router.router, prefix="/chat", tags=["chat"])
 
 @app.get("/health")
 def health_check():

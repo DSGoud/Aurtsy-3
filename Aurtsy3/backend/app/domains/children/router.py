@@ -48,3 +48,49 @@ async def get_child_behaviors(child_id: str, skip: int = 0, limit: int = 100, db
         behavior_models.BehaviorLog.child_id == child_id
     ).order_by(behavior_models.BehaviorLog.created_at.desc()).offset(skip).limit(limit).all()
     return behaviors
+
+@router.get("/{child_id}/sleep/")
+async def get_child_sleep_logs(child_id: str, skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+    """Get all sleep logs for a specific child"""
+    from app.domains.sleep import models as sleep_models
+    logs = db.query(sleep_models.SleepLog).filter(
+        sleep_models.SleepLog.child_id == child_id
+    ).order_by(sleep_models.SleepLog.start_time.desc()).offset(skip).limit(limit).all()
+    return logs
+
+@router.get("/{child_id}/activities/")
+async def get_child_activities(child_id: str, skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+    """Get all activity logs for a specific child"""
+    from app.domains.activities import models as activity_models
+    logs = db.query(activity_models.Activity).filter(
+        activity_models.Activity.child_id == child_id
+    ).order_by(activity_models.Activity.created_at.desc()).offset(skip).limit(limit).all()
+    return logs
+
+@router.get("/{child_id}/hydration/")
+async def get_child_hydration_logs(child_id: str, skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+    """Get all hydration logs for a specific child"""
+    from app.domains.hydration import models as hydration_models
+    logs = db.query(hydration_models.HydrationLog).filter(
+        hydration_models.HydrationLog.child_id == child_id
+    ).order_by(hydration_models.HydrationLog.created_at.desc()).offset(skip).limit(limit).all()
+    return logs
+
+@router.get("/{child_id}/knowledge/")
+async def get_child_knowledge(child_id: str, skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+    """Get all knowledge entities for a specific child"""
+    from app.domains.knowledge import models as knowledge_models
+    entities = db.query(knowledge_models.Entity).filter(
+        knowledge_models.Entity.child_id == child_id
+    ).order_by(knowledge_models.Entity.created_at.desc()).offset(skip).limit(limit).all()
+    return entities
+
+@router.get("/{child_id}/location/")
+async def get_child_location_checks(child_id: str, skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+    """Get all location checks for a specific child"""
+    from app.domains.activities import models as activity_models
+    checks = db.query(activity_models.LocationCheck).filter(
+        activity_models.LocationCheck.child_id == child_id
+    ).order_by(activity_models.LocationCheck.created_at.desc()).offset(skip).limit(limit).all()
+    return checks 
+

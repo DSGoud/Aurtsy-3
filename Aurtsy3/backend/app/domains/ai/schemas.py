@@ -19,5 +19,14 @@ class VoiceProcessRequest(BaseModel):
 
 class VoiceProcessResponse(BaseModel):
     success: bool
-    processed_types: List[str] # "meal", "behavior", "sleep", "activity", "hydration"
+    processed_types: List[str] # "meal", "behavior", "sleep", "activity", "hydration", "entity"
     message: str
+
+class ContextualQuestionRequest(BaseModel):
+    child_id: str
+    context: str  # e.g., "Just logged Bath", "At Restaurant"
+
+class ContextualQuestionResponse(BaseModel):
+    question: Optional[str] = None
+    context_id: Optional[str] = None
+    reasoning: Optional[str] = None

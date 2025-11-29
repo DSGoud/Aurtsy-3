@@ -119,7 +119,7 @@ class AnalyticsService:
                         if elapsed < 240: # 4 hours
                             loops.append(schemas.OpenLoop(
                                 id=b.id,
-                                request_object=data.get("request_object", "Unknown request"),
+                                request_object=data.get("request_object") or "Unknown request",
                                 status=status,
                                 timestamp=b.created_at,
                                 time_elapsed_minutes=int(elapsed),

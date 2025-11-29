@@ -155,6 +155,15 @@ Respond ONLY with valid JSON, no additional text."""
         """
         Process a natural language voice log, classify it, and save to appropriate tables.
         """
+        # Import knowledge service here to avoid circular imports if any
+        from app.domains.knowledge import service as knowledge_service
+        from app.domains.knowledge import schemas as knowledge_schemas
+        
+        # DEBUG LOGGING
+        import datetime
+        with open("backend_debug.log", "a") as f:
+            f.write(f"\n[{datetime.datetime.now()}] Processing Voice Log: {text[:50]}...\n")
+
         # 1. Construct Prompt
         system_prompt = """You are an intelligent data entry assistant for a special needs caregiving app.
 Your task is to analyze a voice note and extract structured data to save into the database.
@@ -167,6 +176,7 @@ Supported Data Types:
 3. SLEEP: Naps, bedtime, wake up, sleep quality
 4. ACTIVITY: Therapy, play, exercise
 5. HYDRATION: Water, juice, milk intake
+6. ENTITY: Permanent knowledge about the child (preferences, triggers, routines, safe foods, etc.)
 
 **Behavior Analysis (ABC Model + Requests):**
 For behaviors, identify:
@@ -177,6 +187,14 @@ For behaviors, identify:
 - **Request Status**: If they asked for something, was it GRANTED, DENIED, DELAYED, or UNRESOLVED?
 - **Food Seeking**: Is this a request for food (even if not eaten)? true/false
 
+**Entity Extraction (The Knowledge Base):**
+Extract PERMANENT facts about the child that should be remembered for the future.
+- **Safe Foods**: Specific brands, textures (e.g., "Only eats Kraft Blue Box")
+- **Triggers**: Specific sounds, smells, items (e.g., "Hates vacuum noise")
+- **Soothing Tools**: What works to calm them (e.g., "Deep pressure vest")
+- **Routines**: Specific steps for bath, bed, etc.
+- **Communication**: How they communicate (e.g., "Uses 'To infinity' to mean 'Outside'")
+
 Rules:
 - **ALWAYS look for behavioral context around meals/activities**
 - Extract temporal relationships
@@ -185,7 +203,7 @@ Rules:
 
 Response Format (JSON):
 {
-  "classifications": ["MEAL", "BEHAVIOR"],
+  "classifications": ["MEAL", "BEHAVIOR", "ENTITY"],
   "entries": [
     {
       "type": "BEHAVIOR",
@@ -206,10 +224,15 @@ Response Format (JSON):
       }
     },
     {
-      "type": "MEAL",
+      "type": "ENTITY",
       "data": {
-        "meal_type": "SNACK",
-        "notes": "Popcorn"
+        "entity_type": "safe_food",
+        "name": "Kraft Mac & Cheese",
+        "resolved_value": "Kraft Macaroni & Cheese (Blue Box)",
+        "context": {
+          "detail": "Must be the Blue Box version, refuses generic brands",
+          "category": "Dietary"
+        }
       }
     }
   ]
@@ -243,10 +266,25 @@ Response Format (JSON):
                 data = entry.get("data")
                 
                 if entry_type == "MEAL":
+                    # Normalize meal_type to valid enum values
+                    raw_meal_type = data.get("meal_type", "SNACK").upper()
+                    # Map common AI outputs to valid MealType enum values
+                    meal_type_mapping = {
+                        "PRE_MEAL": "PRE_MEAL",
+                        "POST_MEAL": "POST_MEAL",
+                        "SNACK": "SNACK",
+                        "BREAKFAST": "PRE_MEAL",
+                        "LUNCH": "PRE_MEAL",
+                        "DINNER": "PRE_MEAL",
+                        "FOOD": "SNACK",
+                        "MEAL": "PRE_MEAL"
+                    }
+                    normalized_meal_type = meal_type_mapping.get(raw_meal_type, "SNACK")
+                    
                     new_meal = meal_models.Meal(
                         child_id=child_id,
                         user_id=user_id,
-                        meal_type=data.get("meal_type", "SNACK"),
+                        meal_type=normalized_meal_type,
                         notes=data.get("notes", text)
                     )
                     db.add(new_meal)
@@ -277,7 +315,19 @@ Response Format (JSON):
                     db.add(new_behavior)
                     processed_types.append("behavior")
                 
-                # (Add other types as needed, for now focusing on Meal/Behavior as requested)
+                elif entry_type == "ENTITY":
+                    # Create knowledge entity
+                    entity_create = knowledge_schemas.EntityCreate(
+                        child_id=child_id,
+                        entity_type=data.get("entity_type", "general"),
+                        name=data.get("name", "Unknown"),
+                        resolved_value=data.get("resolved_value", data.get("name", "Unknown")),
+                        context=data.get("context", {})
+                    )
+                    knowledge_service.knowledge_service.create_entity(db, entity_create)
+                    processed_types.append("entity")
+                
+                # (Add other types as needed)
             
             db.commit()
             
@@ -315,5 +365,84 @@ Response Format (JSON):
                     processed_types=[],
                     message=f"Critical Error: {str(e)} | DB Error: {str(db_error)}"
                 )
+
+    def generate_contextual_question(self, db: Session, child_id: str, context: str) -> schemas.ContextualQuestionResponse:
+        """
+        Generate a single, relevant follow-up question to fill knowledge gaps based on context.
+        """
+        from app.domains.knowledge import service as knowledge_service
+        
+        # 1. Fetch existing knowledge to avoid asking known things
+        entities = knowledge_service.knowledge_service.list_entities(db, child_id)
+        knowledge_summary = "\n".join([f"- {e.name} ({e.entity_type}): {e.resolved_value}" for e in entities])
+        
+        # 2. Fetch Recent Conversation History (Last 5 logs)
+        # This is CRITICAL for handling corrections ("I meant X, not Y")
+        from app.domains.behavior import models as behavior_models
+        recent_logs = db.query(behavior_models.BehaviorLog).filter(
+            behavior_models.BehaviorLog.child_id == child_id
+        ).order_by(behavior_models.BehaviorLog.created_at.desc()).limit(5).all()
+        
+        # Reverse to show chronological order
+        history_text = ""
+        if recent_logs:
+            history_text = "\n".join([f"- {log.created_at.strftime('%H:%M')}: {log.notes}" for log in reversed(recent_logs)])
+        
+        # 3. Construct Prompt
+        system_prompt = f"""You are an inquisitive care assistant building a "User Manual" for a child with special needs.
+Your goal is to ask ONE specific, high-value question to fill a gap in our knowledge base, based on the current context.
+
+**Existing Knowledge:**
+{knowledge_summary if entities else "No knowledge yet."}
+
+**Recent Conversation History:**
+{history_text if history_text else "No recent history."}
+
+**Current Context:**
+User just logged: "{context}"
+
+**Strategy:**
+1. **Check for Corrections**: If the user says "I meant...", "Correction", or contradicts a previous log, TRUST THE LATEST INPUT and ignore the previous error.
+2. **Identify Gaps**: What is MISSING from our knowledge related to this context?
+3. **Ask ONE Question**: Formulate ONE simple, conversational question.
+4. **Avoid Hallucinations**: Do not invent details (like "Olive Garden") unless explicitly mentioned in the history.
+5. If we already know everything relevant, return null.
+
+**Examples:**
+- Context: "Bath" -> Question: "Does he have a preferred soap brand?" (If soap unknown)
+- Context: "Meltdown at Park" -> Question: "What specific trigger caused it?" (If trigger unknown)
+- Context: "I meant perseverating, not writing" -> Question: "What specific behavior does 'perseverating' involve?" (Correcting previous topic)
+
+**Response Format (JSON):**
+{{
+  "question": "The actual question text",
+  "context_id": "category_topic",
+  "reasoning": "Why this question matters"
+}}
+"""
+        
+        try:
+            response = ollama_client.chat(
+                messages=[{"role": "system", "content": system_prompt}],
+                temperature=0.2 # Lower temperature to reduce hallucinations
+            )
+            
+            response_text = response.strip()
+            if "```json" in response_text:
+                response_text = response_text.split("```json")[1].split("```")[0].strip()
+            elif "```" in response_text:
+                response_text = response_text.split("```")[1].split("```")[0].strip()
+                
+            result = json.loads(response_text)
+            
+            return schemas.ContextualQuestionResponse(
+                question=result.get("question"),
+                context_id=result.get("context_id"),
+                reasoning=result.get("reasoning")
+            )
+            
+        except Exception as e:
+            print(f"Error generating question: {e}")
+            return schemas.ContextualQuestionResponse()
 
 ai_service = AIService()

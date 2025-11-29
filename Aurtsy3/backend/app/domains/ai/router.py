@@ -18,3 +18,9 @@ def process_voice_log(request: schemas.VoiceProcessRequest, db: Session = Depend
     Process a natural language voice log using AI to categorize and save it.
     """
     return service.ai_service.process_voice_log(db, request.child_id, request.user_id, request.text)
+@router.post("/question", response_model=schemas.ContextualQuestionResponse)
+def generate_contextual_question(request: schemas.ContextualQuestionRequest, db: Session = Depends(get_db)):
+    """
+    Generate a smart follow-up question based on context to fill knowledge gaps.
+    """
+    return service.ai_service.generate_contextual_question(db, request.child_id, request.context)
